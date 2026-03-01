@@ -223,10 +223,14 @@ export default function LandingPage() {
 
       {/* ━━━ Section 1: Hero ━━━ */}
       <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 overflow-hidden">
-        {/* Background blobs — Oasis style soft watercolor splotches */}
-        <div className="absolute -top-[15%] -left-[10%] w-[45vw] h-[45vw] max-w-[650px] max-h-[650px] rounded-full opacity-100 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(124,154,142,0.22) 0%, rgba(124,154,142,0.08) 45%, transparent 70%)" }} />
-        <div className="absolute -top-[5%] -right-[8%] w-[40vw] h-[40vw] max-w-[550px] max-h-[550px] rounded-full opacity-100 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(138,174,196,0.20) 0%, rgba(138,174,196,0.06) 45%, transparent 70%)" }} />
-        <div className="absolute -bottom-[10%] right-[5%] w-[35vw] h-[35vw] max-w-[500px] max-h-[500px] rounded-full opacity-100 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(232,184,109,0.18) 0%, rgba(232,184,109,0.05) 45%, transparent 70%)" }} />
+        {/* Glowy mesh gradient background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="hero-glow-1 absolute -top-[20%] -left-[15%] w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] rounded-full" style={{ background: "radial-gradient(circle, rgba(124,154,142,0.45) 0%, rgba(124,154,142,0.15) 35%, transparent 65%)", filter: "blur(60px)" }} />
+          <div className="hero-glow-2 absolute -top-[10%] -right-[12%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] rounded-full" style={{ background: "radial-gradient(circle, rgba(138,174,196,0.40) 0%, rgba(138,174,196,0.12) 35%, transparent 65%)", filter: "blur(60px)" }} />
+          <div className="hero-glow-3 absolute -bottom-[15%] left-[20%] w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] rounded-full" style={{ background: "radial-gradient(circle, rgba(232,184,109,0.35) 0%, rgba(232,184,109,0.10) 35%, transparent 65%)", filter: "blur(60px)" }} />
+          <div className="hero-glow-2 absolute top-[30%] right-[25%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] rounded-full" style={{ background: "radial-gradient(circle, rgba(180,140,200,0.25) 0%, rgba(180,140,200,0.06) 40%, transparent 65%)", filter: "blur(70px)" }} />
+          <div className="hero-glow-1 absolute bottom-[10%] -right-[10%] w-[45vw] h-[45vw] max-w-[550px] max-h-[550px] rounded-full" style={{ background: "radial-gradient(circle, rgba(124,154,142,0.30) 0%, rgba(124,154,142,0.08) 35%, transparent 65%)", filter: "blur(50px)" }} />
+        </div>
 
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <FadeIn>

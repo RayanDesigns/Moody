@@ -121,6 +121,30 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes glowDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-15px, 25px) scale(0.97); }
+  75% { transform: translate(20px, 15px) scale(1.03); }
+}
+
+@keyframes glowDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-25px, 15px) scale(1.04); }
+  50% { transform: translate(20px, -20px) scale(0.96); }
+  75% { transform: translate(-10px, -25px) scale(1.02); }
+}
+
+@keyframes glowDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(25px, 20px) scale(1.06); }
+  66% { transform: translate(-20px, -15px) scale(0.98); }
+}
+
+.hero-glow-1 { animation: glowDrift1 12s ease-in-out infinite; }
+.hero-glow-2 { animation: glowDrift2 15s ease-in-out infinite; }
+.hero-glow-3 { animation: glowDrift3 18s ease-in-out infinite; }
+
 
 @keyframes marquee {
   0% { transform: translateX(0); }
