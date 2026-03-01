@@ -18,13 +18,14 @@ import {
   Send,
 } from "lucide-react";
 
-const CYCLING_PHRASES = [
-  "Feeling anxious?",
-  "Overwhelmed?",
-  "Lost?",
-  "Burned out?",
-  "Disconnected?",
-  "Carrying too much?",
+const MARQUEE_FEATURES = [
+  "AI Journaling",
+  "Mood Tracking",
+  "CBT Exercises",
+  "Breathing Tools",
+  "Weekly Insights",
+  "Private & Encrypted",
+  "AI Companion",
 ];
 
 const TESTIMONIALS = [
@@ -187,34 +188,6 @@ function DemoWidget() {
   );
 }
 
-function CyclingText() {
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const timer = setInterval(
-      () => setIndex((i) => (i + 1) % CYCLING_PHRASES.length),
-      2500
-    );
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="h-7 overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.4 }}
-          className="block text-base text-[#636E72]"
-        >
-          {CYCLING_PHRASES[index]} —{" "}
-          <span className="text-[#7C9A8E] font-medium">You&apos;re in the right place.</span>
-        </motion.span>
-      </AnimatePresence>
-    </div>
-  );
-}
 
 export default function LandingPage() {
   const { user, loading } = useAuth();
@@ -228,59 +201,86 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen overflow-hidden bg-[#FAFAF8] text-[#2D3436]">
+      {/* ━━━ Navbar ━━━ */}
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#FAFAF8]/80 border-b border-[#E2E0DC]/40">
+        <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <Image src="/logo.svg" alt="Moody" width={28} height={28} className="rounded-full" />
+            <span className="font-serif font-bold text-lg text-[#2D3436]">Moody</span>
+          </div>
+          <div className="hidden md:flex items-center gap-8 text-sm text-[#636E72]">
+            <a href="#features" className="hover:text-[#2D3436] transition-colors">Features</a>
+            <a href="#how-it-works" className="hover:text-[#2D3436] transition-colors">How it Works</a>
+            <a href="#demo" className="hover:text-[#2D3436] transition-colors">Try it</a>
+          </div>
+          <Link href="/login">
+            <button className="rounded-full bg-[#2D3436] px-5 py-2 text-sm font-medium text-white transition-all hover:bg-[#3D4D4F] cursor-pointer">
+              Log in
+            </button>
+          </Link>
+        </div>
+      </nav>
+
       {/* ━━━ Section 1: Hero ━━━ */}
-      <section className="aurora-bg-light relative">
-        <div className="relative mx-auto max-w-5xl px-6 pt-28 pb-20 md:pt-40 md:pb-28 text-center">
+      <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 overflow-hidden">
+        {/* Background blobs — Oasis style soft watercolor splotches */}
+        <div className="absolute -top-[15%] -left-[10%] w-[45vw] h-[45vw] max-w-[650px] max-h-[650px] rounded-full opacity-100 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(124,154,142,0.22) 0%, rgba(124,154,142,0.08) 45%, transparent 70%)" }} />
+        <div className="absolute -top-[5%] -right-[8%] w-[40vw] h-[40vw] max-w-[550px] max-h-[550px] rounded-full opacity-100 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(138,174,196,0.20) 0%, rgba(138,174,196,0.06) 45%, transparent 70%)" }} />
+        <div className="absolute -bottom-[10%] right-[5%] w-[35vw] h-[35vw] max-w-[500px] max-h-[500px] rounded-full opacity-100 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(232,184,109,0.18) 0%, rgba(232,184,109,0.05) 45%, transparent 70%)" }} />
+
+        <div className="relative mx-auto max-w-5xl px-6 text-center">
           <FadeIn>
-            <Image src="/logo.svg" alt="Moody" width={80} height={80} className="mx-auto mb-6 rounded-full shadow-lg" />
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-[#2D3436] mb-6">
-              Your mind deserves
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#7C9A8E]/[0.08] border border-[#7C9A8E]/[0.15] px-4 py-1.5 text-xs font-medium text-[#7C9A8E] mb-8">
+              Your mental wellness companion
+            </span>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tight leading-[1.08] text-[#2D3436] mb-6">
+              Find <span className="text-[#7C9A8E]">Peace</span>
               <br />
-              <span className="shimmer-text-light">a place to breathe.</span>
+              Through Writing
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="mx-auto max-w-xl text-lg md:text-xl text-[#636E72] mb-6">
-              Write freely. Understand yourself. Feel better — with AI that
-              actually listens.
+            <p className="mx-auto max-w-lg text-base md:text-lg text-[#636E72] mb-10 leading-relaxed">
+              Automatically understand your emotions and track your mental
+              wellness, helping build habits that boost resilience.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <CyclingText />
-          </FadeIn>
-
-          <FadeIn delay={0.4}>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/signup">
-                <button className="inline-flex items-center gap-2 rounded-full bg-[#7C9A8E] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#7C9A8E]/25 transition-all hover:bg-[#6B8A7D] hover:shadow-xl hover:shadow-[#7C9A8E]/30 cursor-pointer">
-                  Start Writing — It&apos;s Free
-                  <ArrowRight className="h-4 w-4" />
+                <button className="rounded-full bg-[#7C9A8E] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#7C9A8E]/25 transition-all hover:bg-[#6B8A7D] hover:shadow-xl hover:shadow-[#7C9A8E]/30 cursor-pointer">
+                  Get Started
                 </button>
               </Link>
-              <Link href="/login">
+              <a href="#features">
                 <button className="inline-flex items-center gap-2 rounded-full border border-[#E2E0DC] px-8 py-3.5 text-base font-medium text-[#636E72] transition-all hover:border-[#7C9A8E] hover:text-[#2D3436] cursor-pointer">
-                  Sign In
+                  Learn more <ArrowRight className="h-4 w-4" />
                 </button>
-              </Link>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.6}>
-            <div className="mt-10 flex items-center justify-center gap-2 text-sm text-[#94A3B8]">
-              <div className="flex -space-x-1">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 fill-[#E8B86D] text-[#E8B86D]"
-                  />
-                ))}
-              </div>
-              <span className="ml-1">Trusted by 10,000+ users</span>
+              </a>
             </div>
           </FadeIn>
         </div>
+
+        <FadeIn delay={0.5}>
+          <div className="mt-24 border-t border-[#E2E0DC]/40 pt-8 text-center">
+            <p className="text-sm text-[#94A3B8] mb-6">Redefining how people approach mental wellness</p>
+            <div className="marquee-container relative overflow-hidden mx-auto max-w-3xl">
+              <div className="marquee-track flex gap-10 whitespace-nowrap">
+                {[...MARQUEE_FEATURES, ...MARQUEE_FEATURES].map((item, i) => (
+                  <span key={i} className="inline-flex items-center gap-2.5 text-sm font-medium text-[#94A3B8]/80">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#7C9A8E]/50 shrink-0" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </FadeIn>
       </section>
 
       {/* ━━━ Section 2: The Problem ━━━ */}
@@ -334,7 +334,7 @@ export default function LandingPage() {
       </section>
 
       {/* ━━━ Section 3: The Solution ━━━ */}
-      <section className="py-20 md:py-28 px-6 bg-[#F5F4F0]">
+      <section id="features" className="py-20 md:py-28 px-6 bg-[#F5F4F0] scroll-mt-20">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
             <div className="text-center mb-14">
@@ -393,7 +393,7 @@ export default function LandingPage() {
       </section>
 
       {/* ━━━ Section 4: Live Demo ━━━ */}
-      <section className="py-20 md:py-28 px-6 bg-[#FAFAF8]">
+      <section id="demo" className="py-20 md:py-28 px-6 bg-[#FAFAF8] scroll-mt-20">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
             <div className="text-center mb-10">
@@ -533,7 +533,7 @@ export default function LandingPage() {
       </section>
 
       {/* ━━━ Section 7: How It Works ━━━ */}
-      <section className="py-20 md:py-28 px-6 bg-[#F5F4F0]">
+      <section id="how-it-works" className="py-20 md:py-28 px-6 bg-[#F5F4F0] scroll-mt-20">
         <div className="mx-auto max-w-3xl">
           <FadeIn>
             <div className="text-center mb-14">
