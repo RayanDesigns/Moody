@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/lib/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -45,7 +46,7 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-2 text-4xl">🌿</div>
+          <Image src="/logo.svg" alt="Moody" width={56} height={56} className="mx-auto mb-2 rounded-full" />
           <CardTitle className="text-2xl">Welcome back to Moody</CardTitle>
           <CardDescription>Sign in to continue your wellness journey</CardDescription>
         </CardHeader>

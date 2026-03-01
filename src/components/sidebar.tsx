@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -37,9 +38,12 @@ export function Sidebar() {
   const navContent = (
     <>
       <div className="p-6">
-        <h1 className="text-2xl font-bold text-primary">Moody</h1>
+        <Link href="/home" className="flex items-center gap-2.5">
+          <Image src="/logo.svg" alt="Moody" width={36} height={36} className="rounded-full" />
+          <span className="text-xl font-bold text-primary">Moody</span>
+        </Link>
         {profile && (
-          <p className="mt-1 text-sm text-muted-foreground truncate">
+          <p className="mt-2 text-sm text-muted-foreground truncate">
             Hi, {profile.displayName}
           </p>
         )}

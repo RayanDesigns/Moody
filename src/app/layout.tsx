@@ -14,9 +14,30 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://moody-app-sand.vercel.app"),
   title: "Moody — Your Mind Deserves a Place to Breathe",
   description:
     "AI-powered journaling app for mood tracking, emotional analysis, and personalized mental wellness support. Write freely. Understand yourself. Feel better.",
+  icons: {
+    icon: [
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
+    apple: "/logo.svg",
+  },
+  openGraph: {
+    title: "Moody — Your Mind Deserves a Place to Breathe",
+    description:
+      "AI-powered journaling app for mood tracking, emotional analysis, and personalized mental wellness support.",
+    images: [{ url: "/logo.svg" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Moody — Your Mind Deserves a Place to Breathe",
+    description:
+      "AI-powered journaling for mood tracking, emotional analysis, and wellness support.",
+    images: ["/logo.svg"],
+  },
 };
 
 export default function RootLayout({

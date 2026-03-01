@@ -4,6 +4,7 @@ import { useAuth } from "@/lib/hooks/use-auth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -231,6 +232,7 @@ export default function LandingPage() {
       <section className="aurora-bg-light relative">
         <div className="relative mx-auto max-w-5xl px-6 pt-28 pb-20 md:pt-40 md:pb-28 text-center">
           <FadeIn>
+            <Image src="/logo.svg" alt="Moody" width={80} height={80} className="mx-auto mb-6 rounded-full shadow-lg" />
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-[#2D3436] mb-6">
               Your mind deserves
               <br />
@@ -631,9 +633,12 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-[#E2E0DC] py-8 px-6 bg-[#F5F4F0]">
         <div className="mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-sm text-[#94A3B8]">
-            &copy; {new Date().getFullYear()} Moody. Your mind matters.
-          </span>
+          <div className="flex items-center gap-2">
+            <Image src="/logo.svg" alt="Moody" width={24} height={24} className="rounded-full" />
+            <span className="text-sm text-[#94A3B8]">
+              &copy; {new Date().getFullYear()} Moody. Your mind matters.
+            </span>
+          </div>
           <div className="flex gap-6 text-sm text-[#94A3B8]">
             <Link href="/login" className="hover:text-[#7C9A8E] transition-colors">
               Sign In
