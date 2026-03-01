@@ -41,17 +41,9 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (!loading && user) {
-      router.replace("/");
+      router.replace("/home");
     }
   }, [user, loading, router]);
-
-  if (loading || user) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-3 border-primary border-t-transparent" />
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-background">

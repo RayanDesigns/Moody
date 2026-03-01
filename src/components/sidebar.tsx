@@ -17,7 +17,7 @@ import { useAuth } from "@/lib/hooks/use-auth";
 import { useState } from "react";
 
 const NAV_ITEMS = [
-  { href: "/", icon: Home, label: "Home" },
+  { href: "/home", icon: Home, label: "Home" },
   { href: "/journal", icon: BookOpen, label: "Journal" },
   { href: "/insights", icon: BarChart3, label: "Insights" },
   { href: "/chat", icon: MessageCircle, label: "AI Chat" },
