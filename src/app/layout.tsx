@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/lib/hooks/use-auth";
 
@@ -8,10 +8,15 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "Moody — Your Mental Wellness Journal",
+  title: "Moody — Your Mind Deserves a Place to Breathe",
   description:
-    "AI-powered journaling app for mood tracking, emotional analysis, and personalized mental wellness support.",
+    "AI-powered journaling app for mood tracking, emotional analysis, and personalized mental wellness support. Write freely. Understand yourself. Feel better.",
 };
 
 export default function RootLayout({
@@ -21,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

@@ -49,6 +49,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
 }
 
 * {
@@ -61,6 +62,79 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* Landing page dark theme scope */
+.landing-dark {
+  --background: #0B1120;
+  --foreground: #E2E8F0;
+  --card: #141C2E;
+  --card-foreground: #E2E8F0;
+  --muted: #1A2436;
+  --muted-foreground: #94A3B8;
+  --border: #1E293B;
+  --primary: #7C9A8E;
+  --primary-foreground: #FFFFFF;
+  --accent: #E8B86D;
+  --accent-foreground: #0B1120;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
+}
+
+.aurora-bg {
+  background: linear-gradient(
+    135deg,
+    #0B1120 0%,
+    #132040 15%,
+    #1a3a2a 30%,
+    #0B1120 45%,
+    #2a1a10 60%,
+    #0B1120 75%,
+    #0f2840 90%,
+    #0B1120 100%
+  );
+  background-size: 400% 400%;
+  animation: aurora 20s ease infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-animation-delayed {
+  animation: float 6s ease-in-out 2s infinite;
+}
+
+.float-animation-delayed-2 {
+  animation: float 6s ease-in-out 4s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #7C9A8E, #E8B86D, #8AAEC4, #7C9A8E);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Tiptap editor styles */
 .tiptap {
   outline: none;
   min-height: 200px;
