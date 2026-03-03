@@ -104,10 +104,10 @@ function CyclingText() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.4 }}
-          className="block text-base text-[#636E72]"
+          className="block text-sm text-[#94A3B8]"
         >
           {CYCLING_PHRASES[index]} —{" "}
-          <span className="text-[#7C9A8E] font-medium">You&apos;re in the right place.</span>
+          <span className="text-[#7C9A8E]">You&apos;re in the right place.</span>
         </motion.span>
       </AnimatePresence>
     </div>
@@ -272,7 +272,7 @@ export default function LandingPage() {
 
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <FadeIn>
-            <div className="inline-flex items-center rounded-full bg-white/60 backdrop-blur-sm border border-[#E2E0DC] px-5 py-2 shadow-sm mb-8">
+            <div className="inline-block mb-6">
               <CyclingText />
             </div>
           </FadeIn>
