@@ -10,6 +10,7 @@ import {
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithCustomToken,
   createUserWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
@@ -28,6 +29,7 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string, name: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
+  signInWithOtpToken: (token: string, email?: string, phone?: string) => Promise<void>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 }
@@ -112,6 +114,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function signInWithOtpToken(token: string, email?: string, phone?: string) {
+    const cred = await signInWithCustomToken(auth, token);
+    const docRef = doc(db, "users", cred.user.uid);
+    const snap = await getDoc(docRef);
+    if (!snap.exists()) {
+      await createProfile(
+        cred.user.uid,
+        phone ? `User ${phone.slice(-4)}` : email?.split("@")[0] || "User",
+        email || ""
+      );
+    } else {
+      setProfile(snap.data() as UserProfile);
+    }
+  }
+
   async function signOut() {
     await firebaseSignOut(auth);
     setProfile(null);
@@ -132,6 +149,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signIn,
         signUp,
         signInWithGoogle,
+        signInWithOtpToken,
         signOut,
         refreshProfile,
       }}
