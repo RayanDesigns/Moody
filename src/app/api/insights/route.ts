@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getOpenAIClient } from "@/lib/openai";
+import { getGeminiClient, GEMINI_MODEL } from "@/lib/gemini";
 import { INSIGHTS_SYSTEM_PROMPT } from "@/lib/prompts";
 
 export async function POST(req: NextRequest) {
@@ -22,25 +22,22 @@ export async function POST(req: NextRequest) {
       ?.map((m: { date: string; score: number; emoji: string }) => `${m.date}: ${m.emoji} (${m.score}/5)`)
       .join(", ");
 
-    const openai = getOpenAIClient();
+    const ai = getGeminiClient();
 
-    const result = await openai.chat.completions.create({
-      model: "gpt-5-nano",
-      response_format: { type: "json_object" },
-      messages: [
-        { role: "system", content: INSIGHTS_SYSTEM_PROMPT },
-        {
-          role: "user",
-          content: `Here are this week's journal entries and mood data:\n\n${entrySummaries.join("\n\n")}\n\nMood check-ins: ${moodSummary || "none"}`,
-        },
-      ],
-      temperature: 0.5,
-      max_tokens: 600,
+    const result = await ai.models.generateContent({
+      model: GEMINI_MODEL,
+      config: {
+        systemInstruction: INSIGHTS_SYSTEM_PROMPT,
+        responseMimeType: "application/json",
+        temperature: 0.5,
+        maxOutputTokens: 600,
+      },
+      contents: `Here are this week's journal entries and mood data:\n\n${entrySummaries.join("\n\n")}\n\nMood check-ins: ${moodSummary || "none"}`,
     });
 
     let insights;
     try {
-      insights = JSON.parse(result.choices[0].message.content || "{}");
+      insights = JSON.parse(result.text || "{}");
     } catch {
       insights = {
         trajectory: "stable",
@@ -56,14 +53,9 @@ export async function POST(req: NextRequest) {
     const err = error as { status?: number; message?: string; code?: string };
     console.error("Insights API error:", err.message, err.code, err.status);
 
-    const isQuota = err.code === "insufficient_quota" || err.status === 429;
     return NextResponse.json(
-      {
-        error: isQuota
-          ? "AI service is temporarily unavailable. Please try again later."
-          : "Failed to generate insights",
-      },
-      { status: isQuota ? 503 : 500 }
+      { error: "Failed to generate insights" },
+      { status: 500 }
     );
   }
 }
