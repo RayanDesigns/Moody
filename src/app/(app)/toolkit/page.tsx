@@ -82,7 +82,7 @@ export default function ToolkitPage() {
       </div>
 
       <Tabs defaultValue="breathing">
-        <TabsList className="w-full justify-start">
+        <TabsList className="w-fit mx-auto">
           <TabsTrigger value="breathing" className="flex items-center gap-1.5">
             <Wind className="h-4 w-4" /> Breathing
           </TabsTrigger>

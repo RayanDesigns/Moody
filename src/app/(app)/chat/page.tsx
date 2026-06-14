@@ -181,7 +181,7 @@ export default function ChatPage() {
           </div>
           <p className="mt-2 text-[11px] text-muted-foreground text-center">
             Moody is an AI companion, not a therapist. If you&apos;re in crisis,
-            call 988 or text HOME to 741741.
+            call 911 or reach out to any of your family.
           </p>
         </div>
       </Card>

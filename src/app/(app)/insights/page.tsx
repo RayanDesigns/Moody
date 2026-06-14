@@ -33,6 +33,23 @@ export default function InsightsPage() {
   const { entries } = useEntries(user?.uid, 100);
   const [insights, setInsights] = useState<WeeklyInsights | null>(null);
   const [loadingInsights, setLoadingInsights] = useState(false);
+  const [seeding, setSeeding] = useState(false);
+
+  async function loadSampleData() {
+    if (!user) return;
+    setSeeding(true);
+    try {
+      await fetch("/api/seed", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.uid }),
+      });
+    } catch {
+      // silent
+    } finally {
+      setSeeding(false);
+    }
+  }
 
   const last7Days = moods.filter(
     (m) => new Date(m.date) >= subDays(new Date(), 7)
@@ -106,11 +123,24 @@ export default function InsightsPage() {
 
   return (
     <div className="space-y-6 pt-8 md:pt-0">
-      <div>
-        <h1 className="text-2xl font-bold">Insights</h1>
-        <p className="text-muted-foreground">
-          Patterns and trends from your journaling journey
-        </p>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold">Insights</h1>
+          <p className="text-muted-foreground">
+            Patterns and trends from your journaling journey
+          </p>
+        </div>
+        {entries.length === 0 && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={loadSampleData}
+            disabled={seeding}
+            className="shrink-0"
+          >
+            {seeding ? "Loading..." : "Load sample data"}
+          </Button>
+        )}
       </div>
 
       {/* Stats cards */}
